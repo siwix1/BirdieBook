@@ -24,7 +24,7 @@ namespace BirdieBook.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<BirdieBook.Models.GolfCourse> GolfCourse { get; set; }
+        public DbSet<GolfCourse> GolfCourse { get; set; }
 
         public DbSet<BirdieBook.Models.TeeBox> TeeBox { get; set; }
 
