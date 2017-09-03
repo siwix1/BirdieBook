@@ -1,0 +1,64 @@
+﻿@model  GolfCourseDetails
+
+<br />
+
+<div class="container">
+
+    <dl class="dl-horizontal">
+        <dt>TeeBox</dt>
+        <dd>@Html.DisplayFor(model => model.TeeBox.First().Name)</dd>
+        <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().MensSlope)</dt>
+        <dd>@Html.DisplayFor(model => Model.TeeBox.First().MensSlope)</dd>
+        <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().MensCourseRating)</dt>
+        <dd>@Html.DisplayFor(model => Model.TeeBox.First().MensCourseRating)</dd>
+        <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().WomensSlope)</dt>
+        <dd>@Html.DisplayFor(model => Model.TeeBox.First().WomensSlope)</dd>
+        <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().WomensCourseRating)</dt>
+        <dd>@Html.DisplayFor(model => Model.TeeBox.First().WomensCourseRating)</dd>
+
+    </dl>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().HoleNumber)</th>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    {
+                        <th>@Html.DisplayFor(model => h.HoleNumber)</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().HCPIndex)</th>
+
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    {
+                        <td>@Html.DisplayFor(model => h.HCPIndex)</td>
+                    }
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().Par)</th>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    {
+                        <td>@Html.DisplayFor(model => h.Par)</td>
+                    }
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Hole.First().Length)</th>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    {
+                        <td>@Html.DisplayFor(model => h.Length)</td>
+                    }
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+  

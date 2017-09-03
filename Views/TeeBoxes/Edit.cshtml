@@ -1,0 +1,59 @@
+﻿@model BirdieBook.Models.TeeBox
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>TeeBox</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TeeBoxID" />
+            <div class="form-group">
+                <label asp-for="GolfCourseID" class="control-label"></label>
+                <select asp-for="GolfCourseID" class="form-control" asp-items="ViewBag.GolfCourseID"></select>
+                <span asp-validation-for="GolfCourseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MensSlope" class="control-label"></label>
+                <input asp-for="MensSlope" class="form-control" />
+                <span asp-validation-for="MensSlope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MensCourseRating" class="control-label"></label>
+                <input asp-for="MensCourseRating" class="form-control" />
+                <span asp-validation-for="MensCourseRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WomensSlope" class="control-label"></label>
+                <input asp-for="WomensSlope" class="form-control" />
+                <span asp-validation-for="WomensSlope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WomensCourseRating" class="control-label"></label>
+                <input asp-for="WomensCourseRating" class="form-control" />
+                <span asp-validation-for="WomensCourseRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

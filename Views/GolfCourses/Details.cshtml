@@ -1,0 +1,26 @@
+﻿@model BirdieBook.Models.GolfCourseDetails
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Golf Course</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.GolfCourse.Name)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            
+        </dt>
+    </dl>
+</div>
+
+@await  Component.InvokeAsync("GolfCourseDetails", new { golfCourseDetails = Model })
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.GolfCourse.GolfCourseID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

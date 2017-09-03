@@ -1,0 +1,54 @@
+﻿@model BirdieBook.Models.UserRound
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserRound</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeeBoxID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TeeBoxID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeeTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TeeTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserHCP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserHCP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DailyScratchRating)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DailyScratchRating)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WeatherCondition)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WeatherCondition)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UserRoundID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

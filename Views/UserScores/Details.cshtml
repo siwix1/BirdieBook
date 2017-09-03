@@ -1,0 +1,42 @@
+﻿@model BirdieBook.Models.UserScore
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserScore</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoleID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoleID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FairwayHit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FairwayHit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuttCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuttCount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UserScoreID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

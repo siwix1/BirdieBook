@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BirdieBook.Models.UserScore>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoleID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Score)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FairwayHit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PuttCount)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FairwayHit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PuttCount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserScoreID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserScoreID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserScoreID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
