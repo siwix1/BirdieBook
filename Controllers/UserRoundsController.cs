@@ -24,14 +24,17 @@ namespace BirdieBook.Controllers
         public async Task<IActionResult> Index()
         {
 
-            
-            var query = from rounds in _context.UserRound
-                        join teeBoxes in _context.TeeBox on rounds.TeeBoxID equals teeBoxes.TeeBoxID
-                        join golfCourses in _context.GolfCourse on teeBoxes.GolfCourseID equals golfCourses.GolfCourseID
-                        where rounds.UserID == User.Identity.Name
-                        select new UserRoundViewModel { UserRound = rounds, TeeBox = teeBoxes, GolfCourse = golfCourses };
-
-            //TODO: Add user scores
+            var query = from s in _context.UserScore
+                        group s by s.UserRoundID into g_s
+                        join r in _context.UserRound on g_s.FirstOrDefault().UserRoundID equals r.UserRoundID
+                        join t in _context.TeeBox on r.TeeBoxID equals t.TeeBoxID
+                        join g in _context.GolfCourse on t.GolfCourseID equals g.GolfCourseID
+                        select new UserRoundViewModel {
+                            UserRoundID = r.UserRoundID,
+                            GolfCourse = g.Name, Tee=t.Name, TeeTime = r.TeeTime,
+                            TotalScore = g_s.Sum(x=>x.Score),
+                            HolesPlayed = g_s.Count()
+                        };
 
             return View(await query.ToListAsync());
             //return View(await _context.UserRound.ToListAsync());
@@ -98,7 +101,13 @@ namespace BirdieBook.Controllers
                 _context.Add(userRound);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction(nameof(Create), "UserScores", userRound);
+                var userScoreCreate = new UserScoreCreate()
+                {
+                    UserRoundID = userRound.UserRoundID,
+                    holeNumber = 1
+                };
+
+                return RedirectToAction(nameof(Create), "UserScores", userScoreCreate);
             }
             else
             {

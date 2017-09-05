@@ -12,52 +12,54 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(modelItem=>modelItem.UserRound.UserID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(modelItem=>modelItem.TeeBox.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(modelItem=>modelItem.UserRound.TeeTime)
-                </th>
-                <th> 
-                    @Html.DisplayNameFor(modelItem => modelItem.UserRound.UserHCP)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(modelItem => modelItem.UserRound.DailyScratchRating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(modelItem => modelItem.UserRound.WeatherCondition)
-                </th>
+            @*<th>
+                @Html.DisplayNameFor(modelItem=>modelItem.UserRound.UserID)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.GolfCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.Tee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.TeeTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.HolesPlayed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.TotalScore)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            @*<td>
+                @Html.HiddenFor(modelItem => item.UserRound.UserID)
+            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.UserRound.UserID)
+                @Html.DisplayFor(modelItem => item.GolfCourse)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Tee)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TeeTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TeeBox.Name)
+                @Html.DisplayFor(modelItem => item.HolesPlayed)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem =>  item.TotalScore)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserRound.TeeTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRound.UserHCP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRound.DailyScratchRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRound.WeatherCondition)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserRound.UserRoundID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserRound.UserRoundID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserRound.UserRoundID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.UserRoundID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserRoundID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserRoundID">Delete</a>
             </td>
         </tr>
 }

@@ -16,6 +16,9 @@
                     @Html.DisplayNameFor(model => model.HoleID)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.HoleNumber)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Score)
                 </th>
                 <th>
@@ -32,6 +35,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.HoleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoleNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Score)

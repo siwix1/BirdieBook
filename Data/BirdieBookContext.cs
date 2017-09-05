@@ -10,7 +10,7 @@ namespace BirdieBook.Data
 {
     public class BirdieBookContext : IdentityDbContext<ApplicationUser>
     {
-        public BirdieBookContext(DbContextOptions<BirdieBookContext> options)
+        public BirdieBookContext(DbContextOptions<BirdieBookContext> options) 
             : base(options)
         {
         }

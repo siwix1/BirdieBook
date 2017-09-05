@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace BirdieBook.Models
         
         public string TeeBoxID { get; set; }
         public string GolfCourseID { get; set; }
+        [Display(Name="Tee")]
         public string Name { get; set; }
         public int MensSlope { get; set; } 
         public int MensCourseRating { get; set; }

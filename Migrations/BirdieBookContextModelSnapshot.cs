@@ -85,12 +85,10 @@ namespace BirdieBook.Migrations
 
             modelBuilder.Entity("BirdieBook.Models.Hole", b =>
                 {
-                    b.Property<int>("HoleID")
+                    b.Property<string>("HoleID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("HCPIndex");
-
-                    b.Property<int?>("HoleID1");
 
                     b.Property<int>("HoleNumber");
 
@@ -101,8 +99,6 @@ namespace BirdieBook.Migrations
                     b.Property<string>("TeeBoxID");
 
                     b.HasKey("HoleID");
-
-                    b.HasIndex("HoleID1");
 
                     b.HasIndex("TeeBoxID");
 
@@ -289,10 +285,6 @@ namespace BirdieBook.Migrations
 
             modelBuilder.Entity("BirdieBook.Models.Hole", b =>
                 {
-                    b.HasOne("BirdieBook.Models.Hole", "hole")
-                        .WithMany()
-                        .HasForeignKey("HoleID1");
-
                     b.HasOne("BirdieBook.Models.TeeBox")
                         .WithMany("holes")
                         .HasForeignKey("TeeBoxID");

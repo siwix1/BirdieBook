@@ -7,7 +7,9 @@ namespace BirdieBook.Models
     {
         [HiddenInput(DisplayValue = false)]
         public string UserScoreID { get; set; } //PK in UserScore
+        [HiddenInput(DisplayValue = false)]
         public string UserRoundID { get; set; } //FK in UserRound
+        [HiddenInput(DisplayValue = false)]
         public string HoleID { get; set; } //FK in Holes
         [Range(1,18)]
         public int HoleNumber { get; set; } //Holenumbers from 1 to 18

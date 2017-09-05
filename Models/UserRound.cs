@@ -13,10 +13,12 @@ namespace BirdieBook.Models
         {
             Score = new List<UserScore>();
         }
-        //[HiddenInput(DisplayValue=false)]
+        [HiddenInput(DisplayValue=false)]
         public string UserRoundID { get; set; } //Primary Key
 
+        [HiddenInput(DisplayValue = false)]
         public string UserID { get; set; } //FK to AspNetUsearLogins table
+
         public string TeeBoxID { get; set; } //FK to Teebox table
         public DateTime TeeTime { get; set; }
         public decimal UserHCP { get; set; } //HCP = Golfers Handicap

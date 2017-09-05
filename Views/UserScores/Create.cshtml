@@ -12,14 +12,19 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="UserRoundID" class="control-label"></label>
-                <select asp-for="UserRoundID" class ="form-control" asp-items="ViewBag.UserRoundID"></select>
+                <input asp-for="UserRoundID" class ="form-control" />
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="HoleID" class="control-label"></label>
                 <input asp-for="HoleID" class="form-control" />
                 <span asp-validation-for="HoleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoleNumber" class="control-label"></label>
+                <input asp-for="HoleNumber" class="form-control" />
+                <span asp-validation-for="HoleNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Score" class="control-label"></label>
@@ -39,7 +44,9 @@
                 <span asp-validation-for="PuttCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" name="Next" value="Save & goto next hole" class="btn btn-default" />
+                <input type="submit" name="Discard" value="Discard hole and return" class="btn btn-default" />
+                <input type="submit" name="Finish" value="Finish round" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -52,3 +59,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

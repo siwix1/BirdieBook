@@ -45,23 +45,26 @@ namespace BirdieBook.Controllers
         }
 
         // GET: UserScores/Create
-        public IActionResult Create(UserRound userRound)
+        public IActionResult Create(UserScoreCreate userScoreCreate)
         {
             //Fetch hole id for the teebox's first hole, based on selected teebox in userRound
             var query = from round in _context.UserRound
                         join teeBox in _context.TeeBox on round.TeeBoxID equals teeBox.TeeBoxID
                         join hole in _context.Hole on teeBox.TeeBoxID equals hole.TeeBoxID
-                        where hole.HoleNumber==1
-                        select new { teeBoxID = teeBox.TeeBoxID, holeID = hole.HoleID};
+                        where round.UserRoundID == userScoreCreate.UserRoundID
+                        && hole.HoleNumber == userScoreCreate.holeNumber
+                        select new { teeBoxID = teeBox.TeeBoxID, holeID = hole.HoleID, score = hole.Par };
 
             var userScore = new UserScore()
             {
                 //Create Query to join userscores with selected teebox
-                UserRoundID=userRound.UserRoundID,
-                HoleID=query.First().holeID.ToString() //TODO: wrong type on holeid
+                UserRoundID = userScoreCreate.UserRoundID,
+                HoleID = query.First().holeID,
+                HoleNumber = userScoreCreate.holeNumber,
+                Score = query.First().score
             };
 
-            return View();
+            return View(userScore);
         }
 
         // POST: UserScores/Create
@@ -69,18 +72,52 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserScoreID,UserRoundID,HoleID,Score,FairwayHit,PuttCount")] UserScore userScore)
+        public async Task<IActionResult> Create([Bind("UserScoreID,UserRoundID,HoleID,HoleNumber,Score,FairwayHit,PuttCount")] UserScore userScore)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+
             if (ModelState.IsValid)
             {
-                _context.Add(userScore);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+                //Save score unless it was discarded
+                if (!string.IsNullOrEmpty(Request.Form["Discard"]))
+                {
+                    _context.Add(userScore);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index), "UserRounds");
+
+
+                }
+
+                //Check if NEXT or FINISH was pressed
+                if (!string.IsNullOrEmpty(Request.Form["Next"]))
+                {
+
+                    if (userScore.HoleNumber==18)
+                    {
+                        //TODO: After hole 18, users must either finish the round, or start editing the holes
+                    }
+
+                    var userScoreCreate = new UserScoreCreate()
+                    {
+                        UserRoundID = userScore.UserRoundID,
+                        holeNumber = userScore.HoleNumber+1 //Increment hole number
+                    };
+                    //return View();
+                    return RedirectToAction(nameof(Create), "UserScores", userScoreCreate);
+
+                }
+
+                if (!string.IsNullOrEmpty(Request.Form["Finish"]))
+                {
+                    return RedirectToAction(nameof(Index), "UserRounds");
+
+                }
 
             }
             return View(userScore);
         }
-
         // GET: UserScores/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -102,7 +139,7 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserScoreID,UserRoundID,HoleID,Score,FairwayHit,PuttCount")] UserScore userScore)
+        public async Task<IActionResult> Edit(string id, [Bind("UserScoreID,UserRoundID,HoleID,HoleNumber,Score,FairwayHit,PuttCount")] UserScore userScore)
         {
             if (id != userScore.UserScoreID)
             {
