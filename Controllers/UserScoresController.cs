@@ -99,7 +99,7 @@ namespace BirdieBook.Controllers
                         //TODO: After hole 18, users must either finish the round, or start editing the holes
                     }
 
-                    var userScoreCreate = new UserScoreCreate()
+                    var userScoreCreate = new UserScoreCreate() //TODO: Need dependency injection? or viewbag
                     {
                         UserRoundID = userScore.UserRoundID,
                         holeNumber = userScore.HoleNumber+1 //Increment hole number

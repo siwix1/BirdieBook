@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +14,15 @@ namespace BirdieBook.Models
         {
             holes = new List<Hole>();
         }
-        
+        [Key]
+        [HiddenInput(DisplayValue =false)]
         public string TeeBoxID { get; set; }
+
+        [Display(Name="Golf Course")]
+        [HiddenInput(DisplayValue = false)]
+        [ForeignKey("GolfCourse")]
         public string GolfCourseID { get; set; }
+
         [Display(Name="Tee")]
         public string Name { get; set; }
         public int MensSlope { get; set; } 

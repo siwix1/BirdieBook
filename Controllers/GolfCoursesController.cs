@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
 using Microsoft.Extensions.Logging;
+using BirdieBook.ViewFactories;
 
 namespace BirdieBook.Controllers
 {
@@ -15,6 +16,7 @@ namespace BirdieBook.Controllers
     {
         private readonly BirdieBookContext _context;
         private readonly ILogger _logger;
+        private readonly IViewFactory viewFactory;
 
         public GolfCoursesController(BirdieBookContext context, ILogger<GolfCoursesController> logger)
         {
@@ -69,14 +71,15 @@ namespace BirdieBook.Controllers
 
             var hole = _context.Hole
                 .Where(m => m.TeeBoxID == teeBox[0].TeeBoxID);
-             
 
-            var golfCourseDetails = new GolfCourseDetails
+
+            var golfCourseDetails = new GolfCourseDetails //Violates SRP, but is ok for simple viewmodels
             {
-                GolfCourse = golfCourse,
+                GolfCourse = golfCourse, 
                 TeeBox = teeBox,
                 Hole = hole
             };
+
 
             return View(golfCourseDetails);
         }
@@ -99,7 +102,18 @@ namespace BirdieBook.Controllers
             {
                 _context.Add(golfCourse);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+
+                if (!string.IsNullOrEmpty(Request.Form["Create"]))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                if (!string.IsNullOrEmpty(Request.Form["Continue"])) //Continue to add tee
+                {
+                    return RedirectToAction(nameof(Create), "TeeBoxes", golfCourse);
+                }
+
             }
             return View(golfCourse);
         }

@@ -53,8 +53,11 @@ namespace BirdieBook.Controllers
         }
 
         // GET: TeeBoxes/Create
-        public IActionResult Create()
+        public IActionResult Create(GolfCourse golfCourse)
         {
+            ModelState.Clear(); //Fixes incorrect teename in view.
+            ViewBag.GolfCourse = golfCourse;
+
             return View();
         }
 
@@ -69,7 +72,8 @@ namespace BirdieBook.Controllers
             {
                 _context.Add(teeBox);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create), "Holes", new { teeBoxID = teeBox.TeeBoxID }); //Continue to define holes
             }
             return View(teeBox);
         }
