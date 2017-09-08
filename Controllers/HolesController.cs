@@ -113,6 +113,14 @@ namespace BirdieBook.Controllers
             {
                 return NotFound();
             }
+
+            var golfCourseID = _context.TeeBox.Where(m => m.TeeBoxID == hole.TeeBoxID).FirstOrDefault()?.GolfCourseID;
+            ViewBag.GolfCourseID = golfCourseID; //TODO: Decide if just returning to previous list is better
+
+            var teeBoxName = _context.TeeBox.Where(m => m.TeeBoxID == hole.TeeBoxID).FirstOrDefault()?.Name;
+            ViewBag.TeeBoxName = teeBoxName;
+
+
             return View(hole);
         }
 

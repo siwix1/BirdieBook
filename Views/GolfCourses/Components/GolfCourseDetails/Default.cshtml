@@ -6,7 +6,8 @@
 
     <dl class="dl-horizontal">
         <dt>TeeBox</dt>
-        <dd>@Html.DisplayFor(model => model.TeeBox.First().Name)</dd>
+        <dd>@Html.DisplayFor(model => model.TeeBox.First().Name)
+        <small><a asp-action="Edit" asp-controller="TeeBoxes" asp-route-id="@Model.TeeBox.First().TeeBoxID">Edit</a></small></dd>
         <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().MensSlope)</dt>
         <dd>@Html.DisplayFor(model => Model.TeeBox.First().MensSlope)</dd>
         <dt>@Html.DisplayNameFor(model => Model.TeeBox.First().MensCourseRating)</dt>
@@ -23,36 +24,65 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().HoleNumber)</th>
-                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().HoleNumber)
+                        <small style="font-weight:normal"><a asp-action="Edit" asp-controller="Holes" asp-route-id="@Model.Hole.OrderBy(m=>m.HoleNumber).First().HoleID">Edit</a></small></th>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m=>m.HoleNumber<10))
                     {
                         <th>@Html.DisplayFor(model => h.HoleNumber)</th>
                     }
+                    <th>Out</th>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m => m.HoleNumber > 9))
+                    {
+                        <th>@Html.DisplayFor(model => h.HoleNumber)</th>
+                    }
+                    <th>In</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().HCPIndex)</th>
 
-                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m=>m.HoleNumber<10))
+                    {
+                        <td>@Html.DisplayFor(model => h.HCPIndex)</td>
+                    }
+                    <td></td>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m => m.HoleNumber > 9))
                     {
                         <td>@Html.DisplayFor(model => h.HCPIndex)</td>
                     }
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Hole.FirstOrDefault().Par)</th>
-                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m=>m.HoleNumber<10))
                     {
                         <td>@Html.DisplayFor(model => h.Par)</td>
+                        @*<td><input asp-for="@h.Par" value="@h.Par" class="form-control" /></td>*@
                     }
+                    <td>@Model.Hole.Where(m=>m.HoleNumber<10).Sum(m=>m.Par)</td>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m => m.HoleNumber > 9))
+                    {
+                        <td>@Html.DisplayFor(model => h.Par)</td>
+                        @*<td><input asp-for="@h.Par" value="@h.Par" class="form-control" /></td>*@
+
+                    }
+                    <td>@Model.Hole.Where(m => m.HoleNumber > 9).Sum(m => m.Par)</td>
+                    <td>@Model.Hole.Sum(m => m.Par)</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Hole.First().Length)</th>
-                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber))
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m=>m.HoleNumber<10))
                     {
                         <td>@Html.DisplayFor(model => h.Length)</td>
                     }
-
+                    <td>@Model.Hole.Where(m => m.HoleNumber < 10).Sum(m => m.Length)</td>
+                    @foreach (var h in Model.Hole.OrderBy(m => m.HoleNumber).Where(m=>m.HoleNumber>9))
+                    {
+                        <td>@Html.DisplayFor(model => h.Length)</td>
+                    }
+                    <td>@Model.Hole.Where(m => m.HoleNumber > 9).Sum(m => m.Length)</td>
+                    <td>@Model.Hole.Sum(m => m.Length)</td>
                 </tr>
             </tbody>
         </table>

@@ -13,9 +13,10 @@ namespace BirdieBook.Models
         [Key]
         public string HoleID { get; set; }
         [ForeignKey("TeeBox")]
-        [HiddenInput(DisplayValue=false)]
+        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Tee")]
         public string TeeBoxID { get; set; }
+        [Display(Name = "Hole")]
         public int HoleNumber { get; set; }
         public int Par { get; set; }
         public int Length { get; set; }
