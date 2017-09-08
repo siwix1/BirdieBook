@@ -15,14 +15,13 @@
             <input type="hidden" asp-for="HoleID" />
             <div class="form-group">
                 <label asp-for="TeeBoxID" class="control-label"></label>
-                <input asp-for="TeeBoxID" class="form-control" />
-                <br />
-                <div>@ViewBag.TeeBoxName</div>
+                <input asp-for="TeeBoxID" class="form-control" />       
+                <input value="@ViewBag.TeeBoxName" class="form-control" readonly="readonly" />
                 <span asp-validation-for="TeeBoxID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HoleNumber" class="control-label"></label>
-                <input asp-for="HoleNumber" class="form-control" />
+                <input asp-for="HoleNumber" class="form-control" readonly="readonly" />
                 <span asp-validation-for="HoleNumber" class="text-danger"></span>
             </div>
             <div class="form-group">

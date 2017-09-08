@@ -66,7 +66,7 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeeBoxID,GolfCourseID,Name,MensSlope,MensCourseRating,WomensSlope,WomensCourseRating")] TeeBox teeBox)
+        public async Task<IActionResult> Create([Bind("TeeBoxID,GolfCourseID,Name,MensSlope,MensCourseRating,WomensSlope,WomensCourseRating,UnitOfMeasure")] TeeBox teeBox)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +91,10 @@ namespace BirdieBook.Controllers
             {
                 return NotFound();
             }
+
+            var golfCourseName = _context.GolfCourse.Where(m => m.GolfCourseID == teeBox.GolfCourseID).FirstOrDefault()?.Name;
+            ViewBag.GolfCourseName = golfCourseName;
+
             return View(teeBox);
         }
 
@@ -99,7 +103,7 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("TeeBoxID,GolfCourseID,Name,MensSlope,MensCourseRating,WomensSlope,WomensCourseRating")] TeeBox teeBox)
+        public async Task<IActionResult> Edit(string id, [Bind("TeeBoxID,GolfCourseID,Name,MensSlope,MensCourseRating,WomensSlope,WomensCourseRating,UnitOfMeasure")] TeeBox teeBox)
         {
             if (id != teeBox.TeeBoxID)
             {
@@ -124,7 +128,8 @@ namespace BirdieBook.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "GolfCourses", new { id = teeBox.GolfCourseID });
             }
             return View(teeBox);
         }

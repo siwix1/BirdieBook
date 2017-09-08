@@ -12,9 +12,10 @@ using System;
 namespace BirdieBook.Migrations
 {
     [DbContext(typeof(BirdieBookContext))]
-    partial class BirdieBookContextModelSnapshot : ModelSnapshot
+    [Migration("20170908110617_UnitOfMeasure")]
+    partial class UnitOfMeasure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -42,7 +42,16 @@ namespace BirdieBook.Data
 
             var teeBoxes = new TeeBox[]
             {
-                new TeeBox {Name = "White", MensCourseRating=70, MensSlope= 129, holes=holes,WomensCourseRating=0, WomensSlope=0 }
+                new TeeBox
+                {
+                    Name = "White",
+                    MensCourseRating =70,
+                    MensSlope = 129,
+                    holes =holes,
+                    WomensCourseRating =0,
+                    WomensSlope =0,
+                    UnitOfMeasure = TeeBox.DistanceType.Meters
+                }
             };
 
             var GolfCourses = new GolfCourse[]

@@ -25,10 +25,22 @@ namespace BirdieBook.Models
 
         [Display(Name="Tee")]
         public string Name { get; set; }
-        public int MensSlope { get; set; } 
-        public int MensCourseRating { get; set; }
-        public int WomensSlope { get; set; }
-        public int WomensCourseRating { get; set; }
+        [Display(Name = "Mens Slope")]
+        public int? MensSlope { get; set; }
+        [Display(Name = "Mens Course Rating")]
+        public int? MensCourseRating { get; set; }
+        [Display(Name = "Womens Slope")]
+        public int? WomensSlope { get; set; }
+        [Display(Name = "Womens Course Rating")]
+        public int? WomensCourseRating { get; set; }
+        [Display(Name = "Unit Of Measure")]
+        public DistanceType UnitOfMeasure { get; set; }
+
+        public enum DistanceType
+        {
+            Meters=0,
+            Yards=1
+        }
 
         public virtual ICollection<Hole> holes { get; set; }
 
