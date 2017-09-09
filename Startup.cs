@@ -28,7 +28,7 @@ namespace BirdieBook
         {
             
             services.AddDbContext<BirdieBookContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<BirdieBookContext>()
