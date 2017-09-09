@@ -59,6 +59,15 @@ namespace BirdieBook
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            if (env.IsStaging())
+            {
+                //Staging
+            }
+            if (env.IsProduction())
+            {
+
+            }
+
 
             app.UseStaticFiles();
 
