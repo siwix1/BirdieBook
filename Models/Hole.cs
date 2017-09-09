@@ -20,6 +20,7 @@ namespace BirdieBook.Models
         public int HoleNumber { get; set; }
         public int Par { get; set; }
         public int Length { get; set; }
+        [Display(Name ="HCP Index")]
         public int HCPIndex { get; set; }
 
         //public virtual Hole hole { get; set; }
