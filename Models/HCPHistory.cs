@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace BirdieBook.Models
 {
-    public class HCPHistory
+    public class HcpHistory
     {
-        public string UserID { get; set; }
-        public DateTime HCPTime { get; set; }
+        public string UserId { get; set; }
+        public DateTime HcpTime { get; set; }
         public bool ManualUpdate { get; set; }
         public decimal OldHandicap { get; set; }
         public decimal NewHandicap { get; set; }

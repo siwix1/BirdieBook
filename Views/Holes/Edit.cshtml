@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.Hole
+﻿@model Hole
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,12 +12,12 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="HoleID" />
+            <input type="hidden" asp-for="HoleId" />
             <div class="form-group">
-                <label asp-for="TeeBoxID" class="control-label"></label>
-                <input asp-for="TeeBoxID" class="form-control" />       
+                <label asp-for="TeeBoxId" class="control-label"></label>
+                <input asp-for="TeeBoxId" class="form-control" />       
                 <input value="@ViewBag.TeeBoxName" class="form-control" readonly="readonly" />
-                <span asp-validation-for="TeeBoxID" class="text-danger"></span>
+                <span asp-validation-for="TeeBoxId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HoleNumber" class="control-label"></label>
@@ -35,12 +35,14 @@
                 <span asp-validation-for="Length" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HCPIndex" class="control-label"></label>
-                <input asp-for="HCPIndex" class="form-control" />
-                <span asp-validation-for="HCPIndex" class="text-danger"></span>
+                <label asp-for="HcpIndex" class="control-label"></label>
+                <input asp-for="HcpIndex" class="form-control" />
+                <span asp-validation-for="HcpIndex" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" name="Return" value="Return" class="btn btn-default" />
+                <input type="submit" name="Continue" value="Save & Contine" class="btn btn-default" />
+
             </div>
         </form>
     </div>
@@ -52,5 +54,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
 }

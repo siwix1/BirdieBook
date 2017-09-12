@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.TeeBox
+﻿@model TeeBox
 
 @{
     ViewData["Title"] = "Delete";
@@ -44,7 +44,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="TeeBoxID" />
+        <input type="hidden" asp-for="TeeBoxId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

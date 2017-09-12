@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
@@ -25,15 +24,15 @@ namespace BirdieBook.Controllers
         {
 
             var query = from s in _context.UserScore
-                        group s by s.UserRoundID into g_s
-                        join r in _context.UserRound on g_s.FirstOrDefault().UserRoundID equals r.UserRoundID
-                        join t in _context.TeeBox on r.TeeBoxID equals t.TeeBoxID
-                        join g in _context.GolfCourse on t.GolfCourseID equals g.GolfCourseID
+                        group s by s.UserRoundId into gS
+                        join r in _context.UserRound on gS.FirstOrDefault().UserRoundId equals r.UserRoundId
+                        join t in _context.TeeBox on r.TeeBoxId equals t.TeeBoxId
+                        join g in _context.GolfCourse on t.GolfCourseId equals g.GolfCourseId
                         select new UserRoundViewModel {
-                            UserRoundID = r.UserRoundID,
+                            UserRoundId = r.UserRoundId,
                             GolfCourse = g.Name, Tee=t.Name, TeeTime = r.TeeTime,
-                            TotalScore = g_s.Sum(x=>x.Score),
-                            HolesPlayed = g_s.Count()
+                            TotalScore = gS.Sum(x=>x.Score),
+                            HolesPlayed = gS.Count()
                         };
 
             return View(await query.ToListAsync());
@@ -49,7 +48,7 @@ namespace BirdieBook.Controllers
             }
 
             var userRound = await _context.UserRound
-                .SingleOrDefaultAsync(m => m.UserRoundID == id);
+                .SingleOrDefaultAsync(m => m.UserRoundId == id);
             if (userRound == null)
             {
                 return NotFound();
@@ -61,22 +60,24 @@ namespace BirdieBook.Controllers
         // GET: UserRounds/Create
         public IActionResult Create()
         {
-            var userRoundCreate = new UserRoundCreateViewModel();
+            var userRoundCreateViewModel = new UserRoundCreateViewModel();
 
 
-            var userRound = new UserRound();
-            userRound.UserID = User.Identity.Name;
-            userRound.TeeTime = DateTime.Now;
+            var userRound = new UserRound()
+            {
+                UserId = User.Identity.Name,
+                TeeTime = DateTime.Now
+            };
 
 
-            userRoundCreate.GolfCourses = _context.GolfCourse.ToList();
-            userRoundCreate.UserRound = userRound;
+        userRoundCreateViewModel.GolfCourses = _context.GolfCourse.ToList();
+            userRoundCreateViewModel.UserRound = userRound;
 
             //Precreate all the holes
-            userRoundCreate.UserScores = new List<UserScore>();
-            for (int i = 0; i<18;  i++)
+            userRoundCreateViewModel.UserScores = new List<UserScore>();
+            for (var i = 0; i<18;  i++)
             {
-                userRoundCreate.UserScores.Add(new UserScore()
+                userRoundCreateViewModel.UserScores.Add(new UserScore()
                 {
                     //Add holenumbers and other data
                     HoleNumber = i
@@ -86,7 +87,7 @@ namespace BirdieBook.Controllers
 
             //Ignore teeboxes as these are not needed.
 
-            return View(userRoundCreate);
+            return View(userRound);
         }
 
         // POST: UserRounds/Create
@@ -94,7 +95,7 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserRoundID,UserID,TeeBoxID,TeeTime,UserHCP,DailyScratchRating,WeatherCondition")] UserRound userRound)
+        public async Task<IActionResult> Create([Bind("UserRoundId,UserId,TeeBoxId,TeeTime,UserHcp,DailyScratchRating,WeatherCondition")] UserRound userRound)
         {
             if (ModelState.IsValid)
             {
@@ -103,11 +104,14 @@ namespace BirdieBook.Controllers
                 //return RedirectToAction(nameof(Index));
                 var userScoreCreate = new UserScoreCreate()
                 {
-                    UserRoundID = userRound.UserRoundID,
-                    holeNumber = 1
+                    UserRoundId = userRound.UserRoundId,
+                    HoleNumber = 1
                 };
 
-                return RedirectToAction(nameof(Create), "UserScores", userScoreCreate);
+                return RedirectToAction(
+                    nameof(Create), 
+                    "UserScores",
+                    userScoreCreate);
             }
             else
             {
@@ -126,7 +130,7 @@ namespace BirdieBook.Controllers
                 return NotFound();
             }
 
-            var userRound = await _context.UserRound.SingleOrDefaultAsync(m => m.UserRoundID == id);
+            var userRound = await _context.UserRound.SingleOrDefaultAsync(m => m.UserRoundId == id);
             if (userRound == null)
             {
                 return NotFound();
@@ -139,9 +143,9 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserRoundID,UserID,TeeBoxID,TeeTime,UserHCP,DailyScratchRating,WeatherCondition")] UserRound userRound)
+        public async Task<IActionResult> Edit(string id, [Bind("UserRoundId,UserId,TeeBoxId,TeeTime,UserHcp,DailyScratchRating,WeatherCondition")] UserRound userRound)
         {
-            if (id != userRound.UserRoundID)
+            if (id != userRound.UserRoundId)
             {
                 return NotFound();
             }
@@ -155,7 +159,7 @@ namespace BirdieBook.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserRoundExists(userRound.UserRoundID))
+                    if (!UserRoundExists(userRound.UserRoundId))
                     {
                         return NotFound();
                     }
@@ -178,7 +182,7 @@ namespace BirdieBook.Controllers
             }
 
             var userRound = await _context.UserRound
-                .SingleOrDefaultAsync(m => m.UserRoundID == id);
+                .SingleOrDefaultAsync(m => m.UserRoundId == id);
             if (userRound == null)
             {
                 return NotFound();
@@ -192,7 +196,7 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var userRound = await _context.UserRound.SingleOrDefaultAsync(m => m.UserRoundID == id);
+            var userRound = await _context.UserRound.SingleOrDefaultAsync(m => m.UserRoundId == id);
             _context.UserRound.Remove(userRound);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -200,7 +204,7 @@ namespace BirdieBook.Controllers
 
         private bool UserRoundExists(string id)
         {
-            return _context.UserRound.Any(e => e.UserRoundID == id);
+            return _context.UserRound.Any(e => e.UserRoundId == id);
         }
     }
 }

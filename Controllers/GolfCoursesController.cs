@@ -1,14 +1,11 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
+using BirdieBook.ViewModels;
 using Microsoft.Extensions.Logging;
-using BirdieBook.ViewFactories;
 
 namespace BirdieBook.Controllers
 {
@@ -16,7 +13,6 @@ namespace BirdieBook.Controllers
     {
         private readonly BirdieBookContext _context;
         private readonly ILogger _logger;
-        private readonly IViewFactory viewFactory;
 
         public GolfCoursesController(BirdieBookContext context, ILogger<GolfCoursesController> logger)
         {
@@ -30,23 +26,6 @@ namespace BirdieBook.Controllers
             return View(await _context.GolfCourse.ToListAsync());
         }
 
-        // GET: GolfCourses/Details/5
-        public async Task<IActionResult> xxDetails(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var golfCourse = await _context.GolfCourse
-                .SingleOrDefaultAsync(m => m.GolfCourseID == id);
-            if (golfCourse == null)
-            {
-                return NotFound();
-            }
-
-            return View(golfCourse);
-        }
 
         // GET: GolfCourses/Details/5
         public async Task<IActionResult> Details(string id)
@@ -60,17 +39,17 @@ namespace BirdieBook.Controllers
 
 
             var golfCourse = await _context.GolfCourse
-                .SingleOrDefaultAsync(m => m.GolfCourseID == id);
+                .SingleOrDefaultAsync(m => m.GolfCourseId == id);
             if (golfCourse == null)
             {
                 return NotFound();
             }
 
             var teeBox = _context.TeeBox
-                .Where(m => m.GolfCourseID == id).ToList();
+                .Where(m => m.GolfCourseId == id).ToList();
 
             var hole = _context.Hole
-                .Where(m => m.TeeBoxID == teeBox[0].TeeBoxID);
+                .Where(m => m.TeeBoxId == teeBox[0].TeeBoxId);
 
 
             var golfCourseDetails = new GolfCourseDetails //Violates SRP, but is ok for simple viewmodels
@@ -96,7 +75,7 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GolfCourseID,Name")] GolfCourse golfCourse)
+        public async Task<IActionResult> Create([Bind("GolfCourseId,Name")] GolfCourse golfCourse)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +105,7 @@ namespace BirdieBook.Controllers
                 return NotFound();
             }
 
-            var golfCourse = await _context.GolfCourse.SingleOrDefaultAsync(m => m.GolfCourseID == id);
+            var golfCourse = await _context.GolfCourse.SingleOrDefaultAsync(m => m.GolfCourseId == id);
             if (golfCourse == null)
             {
                 return NotFound();
@@ -139,9 +118,9 @@ namespace BirdieBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("GolfCourseID,Name")] GolfCourse golfCourse)
+        public async Task<IActionResult> Edit(string id, [Bind("GolfCourseId,Name")] GolfCourse golfCourse)
         {
-            if (id != golfCourse.GolfCourseID)
+            if (id != golfCourse.GolfCourseId)
             {
                 return NotFound();
             }
@@ -155,7 +134,7 @@ namespace BirdieBook.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GolfCourseExists(golfCourse.GolfCourseID))
+                    if (!GolfCourseExists(golfCourse.GolfCourseId))
                     {
                         return NotFound();
                     }
@@ -178,7 +157,7 @@ namespace BirdieBook.Controllers
             }
 
             var golfCourse = await _context.GolfCourse
-                .SingleOrDefaultAsync(m => m.GolfCourseID == id);
+                .SingleOrDefaultAsync(m => m.GolfCourseId == id);
             if (golfCourse == null)
             {
                 return NotFound();
@@ -192,7 +171,7 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var golfCourse = await _context.GolfCourse.SingleOrDefaultAsync(m => m.GolfCourseID == id);
+            var golfCourse = await _context.GolfCourse.SingleOrDefaultAsync(m => m.GolfCourseId == id);
             _context.GolfCourse.Remove(golfCourse);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -200,7 +179,7 @@ namespace BirdieBook.Controllers
 
         private bool GolfCourseExists(string id)
         {
-            return _context.GolfCourse.Any(e => e.GolfCourseID == id);
+            return _context.GolfCourse.Any(e => e.GolfCourseId == id);
         }
     }
 }

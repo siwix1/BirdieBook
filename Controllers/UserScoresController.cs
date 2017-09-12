@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using BirdieBook.Data;
+﻿using BirdieBook.Data;
 using BirdieBook.Models;
 using BirdieBook.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BirdieBook.Controllers
 {
@@ -35,7 +32,7 @@ namespace BirdieBook.Controllers
             }
 
             var userScore = await _context.UserScore
-                .SingleOrDefaultAsync(m => m.UserScoreID == id);
+                .SingleOrDefaultAsync(m => m.UserScoreId == id);
             if (userScore == null)
             {
                 return NotFound();
@@ -49,18 +46,18 @@ namespace BirdieBook.Controllers
         {
             //Fetch hole id for the teebox's first hole, based on selected teebox in userRound
             var query = from round in _context.UserRound
-                        join teeBox in _context.TeeBox on round.TeeBoxID equals teeBox.TeeBoxID
-                        join hole in _context.Hole on teeBox.TeeBoxID equals hole.TeeBoxID
-                        where round.UserRoundID == userScoreCreate.UserRoundID
-                        && hole.HoleNumber == userScoreCreate.holeNumber
-                        select new { teeBoxID = teeBox.TeeBoxID, holeID = hole.HoleID, score = hole.Par };
+                        join teeBox in _context.TeeBox on round.TeeBoxId equals teeBox.TeeBoxId
+                        join hole in _context.Hole on teeBox.TeeBoxId equals hole.TeeBoxId
+                        where round.UserRoundId == userScoreCreate.UserRoundId
+                        && hole.HoleNumber == userScoreCreate.HoleNumber
+                        select new { teeBoxID = teeBox.TeeBoxId, holeID = hole.HoleId, score = hole.Par };
 
             var userScore = new UserScore()
             {
                 //Create Query to join userscores with selected teebox
-                UserRoundID = userScoreCreate.UserRoundID,
-                HoleID = query.First().holeID,
-                HoleNumber = userScoreCreate.holeNumber,
+                UserRoundId = userScoreCreate.UserRoundId,
+                HoleId = query.First().holeID,
+                HoleNumber = userScoreCreate.HoleNumber,
                 Score = query.First().score
             };
 
@@ -74,7 +71,7 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserScoreID,UserRoundID,HoleID,HoleNumber,Score,FairwayHit,PuttCount")] UserScore userScore)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
 
             if (ModelState.IsValid)
@@ -101,8 +98,8 @@ namespace BirdieBook.Controllers
 
                     var userScoreCreate = new UserScoreCreate() //TODO: Need dependency injection? or viewbag
                     {
-                        UserRoundID = userScore.UserRoundID,
-                        holeNumber = userScore.HoleNumber+1 //Increment hole number
+                        UserRoundId = userScore.UserRoundId,
+                        HoleNumber = userScore.HoleNumber+1 //Increment hole number
                     };
                     //return View();
                     return RedirectToAction(nameof(Create), "UserScores", userScoreCreate);
@@ -126,7 +123,7 @@ namespace BirdieBook.Controllers
                 return NotFound();
             }
 
-            var userScore = await _context.UserScore.SingleOrDefaultAsync(m => m.UserScoreID == id);
+            var userScore = await _context.UserScore.SingleOrDefaultAsync(m => m.UserScoreId == id);
             if (userScore == null)
             {
                 return NotFound();
@@ -141,7 +138,7 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("UserScoreID,UserRoundID,HoleID,HoleNumber,Score,FairwayHit,PuttCount")] UserScore userScore)
         {
-            if (id != userScore.UserScoreID)
+            if (id != userScore.UserScoreId)
             {
                 return NotFound();
             }
@@ -155,7 +152,7 @@ namespace BirdieBook.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserScoreExists(userScore.UserScoreID))
+                    if (!UserScoreExists(userScore.UserScoreId))
                     {
                         return NotFound();
                     }
@@ -178,7 +175,7 @@ namespace BirdieBook.Controllers
             }
 
             var userScore = await _context.UserScore
-                .SingleOrDefaultAsync(m => m.UserScoreID == id);
+                .SingleOrDefaultAsync(m => m.UserScoreId == id);
             if (userScore == null)
             {
                 return NotFound();
@@ -192,7 +189,7 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var userScore = await _context.UserScore.SingleOrDefaultAsync(m => m.UserScoreID == id);
+            var userScore = await _context.UserScore.SingleOrDefaultAsync(m => m.UserScoreId == id);
             _context.UserScore.Remove(userScore);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -200,7 +197,7 @@ namespace BirdieBook.Controllers
 
         private bool UserScoreExists(string id)
         {
-            return _context.UserScore.Any(e => e.UserScoreID == id);
+            return _context.UserScore.Any(e => e.UserScoreId == id);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.UserRound
+﻿@model UserRound
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,16 +12,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserID)
+            @Html.DisplayNameFor(model => model.UserId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserID)
+            @Html.DisplayFor(model => model.UserId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TeeBoxID)
+            @Html.DisplayNameFor(model => model.TeeBoxId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TeeBoxID)
+            @Html.DisplayFor(model => model.TeeBoxId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.TeeTime)
@@ -30,10 +30,10 @@
             @Html.DisplayFor(model => model.TeeTime)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UserHCP)
+            @Html.DisplayNameFor(model => model.UserHcp)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserHCP)
+            @Html.DisplayFor(model => model.UserHcp)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DailyScratchRating)
@@ -50,7 +50,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="UserRoundID" />
+        <input type="hidden" asp-for="UserRoundId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

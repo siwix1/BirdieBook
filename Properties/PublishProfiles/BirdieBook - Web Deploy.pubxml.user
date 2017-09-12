@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAycetiBBNQUmBoZcUVQT6BgAAAAACAAAAAAAQZgAAAAEAACAAAABUw9pbAIJ5dhCN+bCZcBNs4WyBwaaKkSQF6pV2bc4ejgAAAAAOgAAAAAIAACAAAAAO9p3sy1GfPVohBnHGbq6qThZOB1Z9+O9L80m9TxKIkIAAAADjqFAApP2QeNFmvYNWv8OA0eEgL9ZKlYoVZIZ+AJpKYBQl3NRtP7GhCFZ76fPVU7rfho3Ps7UmRKn7xeUjsiuyhvsJ2zr5APIBv/wesUGgDOP5qybN2DsOV2r4xXhJenRqip0KrjcGEVF9kF5NMr+9CBiiiXUcMcDQTYhDtCU+fkAAAADqJf/3AV+bkGsxd0eeZePs4iwUVhmf1VzF0NVL5+209+3uSBVxSJR2egbHKGqm1mV+T+aCctlv94sPTs1VWlE4</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:birdiebookdbserver.database.windows.net,1433;Initial Catalog=BirdieBook_db;User Id=birdiebookadmin@birdiebookdbserver;Password=BirdieBookPianist2016</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

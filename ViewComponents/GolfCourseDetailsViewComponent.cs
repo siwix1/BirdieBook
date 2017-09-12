@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BirdieBook.Models;
+using BirdieBook.ViewModels;
 
 
 namespace BirdieBook.ViewComponents
@@ -13,6 +11,7 @@ namespace BirdieBook.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(GolfCourseDetails golfCourseDetails)
         {
 
+            // ReSharper disable once Mvc.ViewComponentViewNotResolved
             return View(golfCourseDetails);
 
         }

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BirdieBook.Models
 {
@@ -12,16 +9,16 @@ namespace BirdieBook.Models
     {
         public TeeBox()
         {
-            holes = new List<Hole>();
+            Holes = new List<Hole>();
         }
         [Key]
         [HiddenInput(DisplayValue =false)]
-        public string TeeBoxID { get; set; }
+        public string TeeBoxId { get; set; }
 
         [Display(Name="Golf Course")]
         [HiddenInput(DisplayValue = false)]
         [ForeignKey("GolfCourse")]
-        public string GolfCourseID { get; set; }
+        public string GolfCourseId { get; set; }
 
         [Display(Name="Tee")]
         public string Name { get; set; }
@@ -42,7 +39,7 @@ namespace BirdieBook.Models
             Yards=1
         }
 
-        public virtual ICollection<Hole> holes { get; set; }
+        public virtual ICollection<Hole> Holes { get; set; }
 
     }
 }

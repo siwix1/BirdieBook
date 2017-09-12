@@ -14,6 +14,7 @@ namespace BirdieBook.ViewComponents
         {
             
 
+            // ReSharper disable once Mvc.ViewComponentViewNotResolved
             return View(userRoundCreate);
 
         }

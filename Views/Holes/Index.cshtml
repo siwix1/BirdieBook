@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BirdieBook.Models.Hole>
+﻿@model IEnumerable<Hole>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,7 +22,7 @@
                     @Html.DisplayNameFor(model => model.Length)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HCPIndex)
+                    @Html.DisplayNameFor(model => model.HcpIndex)
                 </th>
             <th></th>
         </tr>
@@ -40,12 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Length)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HCPIndex)
+                @Html.DisplayFor(modelItem => item.HcpIndex)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.HoleID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HoleID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HoleID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.HoleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HoleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HoleId">Delete</a>
             </td>
         </tr>
 }

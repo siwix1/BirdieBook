@@ -75,22 +75,22 @@ namespace BirdieBook.Migrations
 
             modelBuilder.Entity("BirdieBook.Models.GolfCourse", b =>
                 {
-                    b.Property<string>("GolfCourseID")
+                    b.Property<string>("GolfCourseId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("GolfCourseID");
+                    b.HasKey("GolfCourseId");
 
                     b.ToTable("GolfCourse");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.Hole", b =>
                 {
-                    b.Property<string>("HoleID")
+                    b.Property<string>("HoleId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("HCPIndex");
+                    b.Property<int>("HcpIndex");
 
                     b.Property<int>("HoleNumber");
 
@@ -98,21 +98,21 @@ namespace BirdieBook.Migrations
 
                     b.Property<int>("Par");
 
-                    b.Property<string>("TeeBoxID");
+                    b.Property<string>("TeeBoxId");
 
-                    b.HasKey("HoleID");
+                    b.HasKey("HoleId");
 
-                    b.HasIndex("TeeBoxID");
+                    b.HasIndex("TeeBoxId");
 
                     b.ToTable("Hole");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.TeeBox", b =>
                 {
-                    b.Property<string>("TeeBoxID")
+                    b.Property<string>("TeeBoxId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("GolfCourseID");
+                    b.Property<string>("GolfCourseId");
 
                     b.Property<int?>("MensCourseRating");
 
@@ -126,43 +126,43 @@ namespace BirdieBook.Migrations
 
                     b.Property<int?>("WomensSlope");
 
-                    b.HasKey("TeeBoxID");
+                    b.HasKey("TeeBoxId");
 
-                    b.HasIndex("GolfCourseID");
+                    b.HasIndex("GolfCourseId");
 
                     b.ToTable("TeeBox");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.UserRound", b =>
                 {
-                    b.Property<string>("UserRoundID")
+                    b.Property<string>("UserRoundId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("DailyScratchRating");
 
-                    b.Property<string>("TeeBoxID");
+                    b.Property<string>("TeeBoxId");
 
                     b.Property<DateTime>("TeeTime");
 
-                    b.Property<decimal>("UserHCP");
+                    b.Property<decimal>("UserHcp");
 
-                    b.Property<string>("UserID");
+                    b.Property<string>("UserId");
 
                     b.Property<string>("WeatherCondition");
 
-                    b.HasKey("UserRoundID");
+                    b.HasKey("UserRoundId");
 
                     b.ToTable("UserRound");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.UserScore", b =>
                 {
-                    b.Property<string>("UserScoreID")
+                    b.Property<string>("UserScoreId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("FairwayHit");
 
-                    b.Property<string>("HoleID");
+                    b.Property<string>("HoleId");
 
                     b.Property<int>("HoleNumber");
 
@@ -170,11 +170,11 @@ namespace BirdieBook.Migrations
 
                     b.Property<int>("Score");
 
-                    b.Property<string>("UserRoundID");
+                    b.Property<string>("UserRoundId");
 
-                    b.HasKey("UserScoreID");
+                    b.HasKey("UserScoreId");
 
-                    b.HasIndex("UserRoundID");
+                    b.HasIndex("UserRoundId");
 
                     b.ToTable("UserScore");
                 });
@@ -291,21 +291,21 @@ namespace BirdieBook.Migrations
                 {
                     b.HasOne("BirdieBook.Models.TeeBox")
                         .WithMany("holes")
-                        .HasForeignKey("TeeBoxID");
+                        .HasForeignKey("TeeBoxId");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.TeeBox", b =>
                 {
                     b.HasOne("BirdieBook.Models.GolfCourse")
                         .WithMany("teeBox")
-                        .HasForeignKey("GolfCourseID");
+                        .HasForeignKey("GolfCourseId");
                 });
 
             modelBuilder.Entity("BirdieBook.Models.UserScore", b =>
                 {
                     b.HasOne("BirdieBook.Models.UserRound")
                         .WithMany("Score")
-                        .HasForeignKey("UserRoundID");
+                        .HasForeignKey("UserRoundId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

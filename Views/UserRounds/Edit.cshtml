@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.UserRound
+﻿@model UserRound
 
 @{
     ViewData["Title"] = "Edit";
@@ -19,9 +19,9 @@
                 <span asp-validation-for="UserID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TeeBoxID" class="control-label"></label>
-                <input asp-for="TeeBoxID" class="form-control" />
-                <span asp-validation-for="TeeBoxID" class="text-danger"></span>
+                <label asp-for="TeeBoxId" class="control-label"></label>
+                <input asp-for="TeeBoxId" class="form-control" />
+                <span asp-validation-for="TeeBoxId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TeeTime" class="control-label"></label>
@@ -29,9 +29,9 @@
                 <span asp-validation-for="TeeTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserHCP" class="control-label"></label>
-                <input asp-for="UserHCP" class="form-control" />
-                <span asp-validation-for="UserHCP" class="text-danger"></span>
+                <label asp-for="UserHcp" class="control-label"></label>
+                <input asp-for="UserHcp" class="form-control" />
+                <span asp-validation-for="UserHcp" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DailyScratchRating" class="control-label"></label>
@@ -55,5 +55,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
 }

@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.TeeBox
+﻿@model TeeBox
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,12 +12,12 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TeeBoxID" />
+            <input type="hidden" asp-for="TeeBoxId" />
             <div class="form-group">
-                <label asp-for="GolfCourseID" class="control-label"></label>
-                <input asp-for="GolfCourseID" class="form-control" />
+                <label asp-for="GolfCourseId" class="control-label"></label>
+                <input asp-for="GolfCourseId" class="form-control" />
                 <input value="@ViewBag.GolfCourseName" class="form-control" />
-                <span asp-validation-for="GolfCourseID" class="text-danger"></span>
+                <span asp-validation-for="GolfCourseId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -57,7 +57,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Details" asp-controller="GolfCourses" asp-route-id="@ViewBag.GolfCourseId">Back to List</a>
 </div>
 
 @section Scripts {

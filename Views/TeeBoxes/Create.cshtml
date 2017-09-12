@@ -1,4 +1,4 @@
-﻿@model BirdieBook.Models.TeeBox
+﻿@model TeeBox
 
 @{
     ViewData["Title"] = "Create";
@@ -13,10 +13,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="GolfCourseID" class="control-label"></label>
-                <input asp-for="GolfCourseID" value="@ViewBag.GolfCourse.GolfCourseID" class ="form-control" />
+                <label asp-for="GolfCourseId" class="control-label"></label>
+                <input asp-for="GolfCourseId" value="@ViewBag.GolfCourse.GolfCourseId" class ="form-control" />
                 <input value="@ViewBag.GolfCourse.Name" class="form-control" />
-                <span asp-validation-for="GolfCourseID" class="text-danger"></span>
+                <span asp-validation-for="GolfCourseId" class="text-danger"></span>
 
             </div>
 
@@ -61,5 +61,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
 }

@@ -1,0 +1,12 @@
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\bin\Release\netcoreapp2.0\BirdieBook.deps.json
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\bin\Release\netcoreapp2.0\BirdieBook.runtimeconfig.json
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\bin\Release\netcoreapp2.0\BirdieBook.runtimeconfig.dev.json
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\bin\Release\netcoreapp2.0\BirdieBook.dll
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\bin\Release\netcoreapp2.0\BirdieBook.pdb
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.csprojResolveAssemblyReference.cache
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.csproj.CoreCompileInputs.cache
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.AssemblyInfoInputs.cache
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.AssemblyInfo.cs
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.dll
+C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\obj\Release\netcoreapp2.0\BirdieBook.pdb

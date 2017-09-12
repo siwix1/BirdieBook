@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BirdieBook.Models.TeeBox>
+﻿@model IEnumerable<TeeBox>
 
 @{
     ViewData["Title"] = "Index";
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.WomensCourseRating)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TeeBoxID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TeeBoxID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TeeBoxID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TeeBoxId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TeeBoxId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TeeBoxId">Delete</a>
             </td>
         </tr>
 }

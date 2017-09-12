@@ -30,15 +30,15 @@
             @Html.DisplayFor(model => model.Length)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HCPIndex)
+            @Html.DisplayNameFor(model => model.HcpIndex)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.HCPIndex)
+            @Html.DisplayFor(model => model.HcpIndex)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="HoleID" />
+        <input type="hidden" asp-for="HoleId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BirdieBook.Models.UserScore>
+﻿@model IEnumerable<UserScore>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.HoleID)
+                    @Html.DisplayNameFor(model => model.HoleId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.HoleNumber)
@@ -34,7 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HoleID)
+                @Html.DisplayFor(modelItem => item.HoleId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HoleNumber)
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.PuttCount)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UserScoreID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserScoreID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserScoreID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.UserScoreId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserScoreId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserScoreId">Delete</a>
             </td>
         </tr>
 }
