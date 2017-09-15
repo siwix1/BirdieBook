@@ -23,13 +23,7 @@ namespace BirdieBook.Controllers
             return View(await _context.TeeBox.ToListAsync());
         }
 
-        // GET: TeeBoxes, return JSON
-        public List<TeeBox> GetTeeBoxes(string id)
-        {
-            var teeBoxList =  _context.TeeBox.Where(m=>m.GolfCourseId==id).ToList();
 
-            return teeBoxList;
-        }
 
 
         // GET: TeeBoxes/Details/5
@@ -90,9 +84,11 @@ namespace BirdieBook.Controllers
                 return NotFound();
             }
 
-            var golfCourseName = _context.GolfCourse.FirstOrDefault(m => m.GolfCourseId == teeBox.GolfCourseId)?.Name;
-            ViewBag.GolfCourseId = teeBox.GolfCourseId;
-            ViewBag.GolfCourseName = golfCourseName;
+            var golfCourse = await _context.GolfCourse.FirstOrDefaultAsync(m => m.GolfCourseId == teeBox.GolfCourseId);
+            if (golfCourse == null) return NotFound();
+
+            ViewBag.GolfCourseId = golfCourse.GolfCourseId;
+            ViewBag.GolfCourseName = golfCourse.Name;
 
             return View(teeBox);
         }
@@ -166,5 +162,15 @@ namespace BirdieBook.Controllers
         {
             return _context.TeeBox.Any(e => e.TeeBoxId == id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTeeBoxesJson (string golfCourseId)
+        {
+            var jsonResult= await _context.TeeBox.Where(m => m.GolfCourseId == golfCourseId).ToListAsync();
+
+            return Json(jsonResult);
+
+        }
+
     }
 }

@@ -1,70 +1,110 @@
-﻿@model BirdieBook.ViewModels.UserRoundCreateViewModel
+﻿@model UserRound
 @{
     ViewData["Title"] = "Create";
 }
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.1.1/typeahead.jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#golfCourseName").autocomplete({
+            source: function (request, response) {
+                $.getJSON("/GolfCourses/GetGolfCoursesJson", { term: request.term }, function (data) {
+                    response($.map(data, function (el) {
+                        return {
+                            value: el.golfCourseId,
+                            label: el.name
+                        };
+                    }));
+                });
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                console.log(ui.item.value);
+                console.log(ui.item.label);
+                $('#golfCourseName').val(ui.item.label);
+                $('#golfCourseId').val(ui.item.value);
+                refreshTeeBoxes(ui.item.value);
+            }            /* other autocomplete options */
+        });
+
+        function refreshTeeBoxes(golfCourseId) {
+            console.log('refreshTeeBoxes');
+            $.getJSON("/TeeBoxes/GetTeeBoxesJson", { golfCourseId: golfCourseId }, function (data) {
+                $.each(data,
+                    function (key, val) {
+                        console.log(key + ' ' + val.teeBoxId);
+                        $('#teeBoxName').append('<option value="' + val.teeBoxId + '">' + val.name + '</option>');
+                    });
+            });
+        }
+
+        $("#teeTime").datetimepicker();
+
+    });
+</script>
+
 
 <h2>Create</h2>
 
 <h4>UserRound</h4>
 <hr />
-<div class="row">
+
+
+
+<div id="row" class="row" >
     <div class="col-md-4">
         <form asp-action="Create">
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="@Model.UserRound.UserId" class="control-label"></label>
-                <input asp-for="@Model.UserRound.UserId" class="form-control" />
-                <span asp-validation-for="@Model.UserRound.UserId" class="text-danger"></span>
+                <label class="control-label">Golf Course</label>
+                <input id="golfCourseName" class="form-control"/>
+            </div>
+            <div class="form-group" hidden="hidden">
+                <label class="control-label">Golf Course Id</label>
+                <input id="golfCourseId" class="form-control" />
             </div>
 
             <div class="form-group">
-                <label asp-for="@Model.GolfCourses.First().Name"></label>
-                <select asp-for="@Model.GolfCourses" id="GolfCourseSelect"
-                        asp-items="@(new SelectList(Model.GolfCourses, "GolfCourseID", "Name"))"
-           >
-                </select>
+                <label asp-for="TeeBoxId" class="control-label"></label>
+                @*<input asp-for="TeeBoxId" class="form-control"/>*@
+
+                <select id="teeBoxName" asp-for="TeeBoxId" class="form-control"></select>
+
+                <span asp-validation-for="TeeBoxId" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
-                <label asp-for="@Model.TeeBoxes.FirstOrDefault().Name"></label>  @*Should never be null*@
-                <select asp-for="@Model.UserRound.TeeBoxId" id="TeeBoxSelect"> @* Options are populated from Jquery events below *@
-
-                        @*asp-items="@(new SelectList(Model.TeeBoxes, "TeeBoxID", "Name"))">*@
-                </select>
-                <span asp-validation-for="@Model.UserRound.TeeBoxId" class="text-danger"></span>
-
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" value="@ViewBag.UserName" class="form-control"/>
+                <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
 
+
             <div class="form-group">
-                <label asp-for="@Model.UserRound.TeeTime" class="control-label"></label>
-                <input asp-for="@Model.UserRound.TeeTime" class="form-control" />
-                <span asp-validation-for="@Model.UserRound.TeeTime" class="text-danger"></span>
+                <label asp-for="@Model.TeeTime" class="control-label"></label>
+                @*<input id="datepicker" autocomplete="off"/>*@
+                <input type="text" asp-for="@Model.TeeTime" id="teeTime" class="form-control"/>
+                <span asp-validation-for="@Model.TeeTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.UserRound.UserHcp" class="control-label"></label>
-                <input asp-for="@Model.UserRound.UserHcp" class="form-control" />
-                <span asp-validation-for="@Model.UserRound.UserHcp" class="text-danger"></span>
+                <label asp-for="@Model.UserHcp" class="control-label"></label>
+                <input asp-for="@Model.UserHcp" value="@ViewBag.Hcp" class="form-control"/>
+                <span asp-validation-for="@Model.UserHcp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.UserRound.DailyScratchRating" class="control-label"></label>
-                <input asp-for="@Model.UserRound.DailyScratchRating" class="form-control" />
-                <span asp-validation-for="@Model.UserRound.DailyScratchRating" class="text-danger"></span>
+                <label asp-for="@Model.DailyScratchRating" class="control-label"></label>
+                <input asp-for="@Model.DailyScratchRating" class="form-control"/>
+                <span asp-validation-for="@Model.DailyScratchRating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.UserRound.WeatherCondition" class="control-label"></label>
-                <input asp-for="@Model.UserRound.WeatherCondition" class="form-control" />
-                <span asp-validation-for="@Model.UserRound.WeatherCondition" class="text-danger"></span>
+                <label asp-for="@Model.WeatherCondition" class="control-label"></label>
+                <input asp-for="@Model.WeatherCondition" class="form-control"/>
+                <span asp-validation-for="@Model.WeatherCondition" class="text-danger"></span>
             </div>
 
 
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default"/>
             </div>
         </form>
     </div>
@@ -74,37 +114,11 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-
-@*User Scores per hole*@
-@await Component.InvokeAsync("UserScore", new { userRoundCreate= Model })
- 
-
-    <script>
-        $(document).ready(function() {
-            console.log('document ready');
-
-            //Override some styles to show proper dropdown boxes.
-            $('#GolfCourseSelect').removeAttr('multiple');
-            $('#TeeBoxSelect').removeAttr('multiple');
+<link rel="stylesheet" href="~/lib/jquery-datetimepicker/jquery.datetimepicker.min.css" />
+<script src="~/lib/jquery-datetimepicker/jquery.datetimepicker.full.min.js"></script>
+<script src="~/lib/jquery-datetimepicker/jquery.datetimepicker.min.js"></script>
+@*@section Scripts {
+    @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
+}*@
 
 
-            //Get Teeboxes after a golfcourse was selected
-            $('#GolfCourseSelect').click(function () {
-                console.log('GolfCourseSelect clicked: ' + $('#GolfCourseSelect').val());
-                $.getJSON("/TeeBoxes/GetTeeboxes/" + $('#GolfCourseSelect').val(), function (data) {
-                    $.each(data, function (key, teeBox) {
-                        $('#TeeBoxSelect').append($('<option></option>').val(teeBox.teeBoxID).text(teeBox.name));
-                        //console.log(key + ' ' + teeBox.teeBox.name);
-                    });
-                });
-            });
-
-    });
-
-    </script>
-
-
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
-    }

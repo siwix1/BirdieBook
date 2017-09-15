@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-
+using System.ComponentModel.DataAnnotations.Schema;
+ 
 namespace BirdieBook.Models
 {
     public class UserScore
@@ -11,11 +12,14 @@ namespace BirdieBook.Models
         {
             Tags = new List<Tag>();
         }
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public string UserScoreId { get; set; } //PK in UserScore
+        [ForeignKey("UserRound")]
         [HiddenInput(DisplayValue = false)]
         public string UserRoundId { get; set; } //FK in UserRound
         [HiddenInput(DisplayValue = false)]
+        [ForeignKey("Hole")]
         public string HoleId { get; set; } //FK in Holes
         [Range(1,18)]
         public int HoleNumber { get; set; } //TODO: Holenumbers from 1 to 18 --not needed?

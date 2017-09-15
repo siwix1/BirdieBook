@@ -23,5 +23,12 @@ namespace BirdieBook.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        public ApplicationUser.GenderType Gender { get; set; }
+
+        [Display(Name="Exact handicap")]
+        [Range(-54, 10)]
+        public decimal Handicap { get; set; }
     }
 }

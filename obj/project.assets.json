@@ -13123,9 +13123,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "C:\\Users\\Stian-Mac\\Source\\Repos\\BirdieBook\\BirdieBook\\BirdieBook.csproj",
       "projectName": "BirdieBook",
@@ -13161,6 +13158,15 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "2.0.0",
+            "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
           "Microsoft.AspNetCore.Authentication.Facebook": {
             "target": "Package",
             "version": "2.0.0"
@@ -13170,21 +13176,12 @@
             "target": "Package",
             "version": "2.0.0"
           },
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
           "Microsoft.Extensions.Configuration.AzureKeyVault": {
             "target": "Package",
             "version": "2.0.0"
           },
-          "Microsoft.AspNetCore.All": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "2.0.0"
           }

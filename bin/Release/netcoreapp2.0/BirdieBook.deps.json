@@ -26,6 +26,7 @@
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.AspNetCore.Authentication.Facebook": "2.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
+          "Microsoft.Extensions.Configuration.AzureKeyVault": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0"
         },

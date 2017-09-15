@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
+using BirdieBook.ViewComponents;
 using BirdieBook.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BirdieBook.Controllers
 {
@@ -57,37 +60,19 @@ namespace BirdieBook.Controllers
             return View(userRound);
         }
 
+
+
         // GET: UserRounds/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var userRoundCreateViewModel = new UserRoundCreateViewModel();
+            //ViewBag.UserName = User.Identity.Name;
+                    
+            //var user = await _context.ApplicationUser.FirstOrDefaultAsync(m => m.UserId == User.Identity.Name);
 
+            //if (user != null)
+            //    ViewBag.Hcp = user.Hcp;
 
-            var userRound = new UserRound()
-            {
-                UserId = User.Identity.Name,
-                TeeTime = DateTime.Now
-            };
-
-
-        userRoundCreateViewModel.GolfCourses = _context.GolfCourse.ToList();
-            userRoundCreateViewModel.UserRound = userRound;
-
-            //Precreate all the holes
-            userRoundCreateViewModel.UserScores = new List<UserScore>();
-            for (var i = 0; i<18;  i++)
-            {
-                userRoundCreateViewModel.UserScores.Add(new UserScore()
-                {
-                    //Add holenumbers and other data
-                    HoleNumber = i
-                });
-            }
-
-
-            //Ignore teeboxes as these are not needed.
-
-            return View(userRound);
+            return View();
         }
 
         // POST: UserRounds/Create

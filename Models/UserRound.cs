@@ -14,7 +14,7 @@ namespace BirdieBook.Models
         [HiddenInput(DisplayValue=false)]
         public string UserRoundId { get; set; } //Primary Key
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
         public string UserId { get; set; } //FK to AspNetUsearLogins table
 
         public GameType Game { get; set; }

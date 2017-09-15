@@ -11,5 +11,11 @@ namespace BirdieBook.Models.AccountViewModels
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public ApplicationUser.GenderType Gender { get; set; }
+
+        [Display(Name = "Exact handicap")]
+        [Range(-54, 10)]
+        public decimal Handicap { get; set; }
     }
 }

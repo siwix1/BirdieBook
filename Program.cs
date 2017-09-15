@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using BirdieBook.Data;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+
 
 namespace BirdieBook
 {

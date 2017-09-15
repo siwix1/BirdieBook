@@ -181,5 +181,12 @@ namespace BirdieBook.Controllers
         {
             return _context.GolfCourse.Any(e => e.GolfCourseId == id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetGolfCoursesJson(string term)
+        {
+            var jsonResult = await _context.GolfCourse.Where(m => m.Name.Contains(term)).ToListAsync();
+            return Json(jsonResult);
+        }
     }
 }
