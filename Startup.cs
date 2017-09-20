@@ -22,8 +22,8 @@ namespace BirdieBook
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddUserSecrets<Startup>()
-                //.AddJsonFile("azureKeyVault.json", optional: false, reloadOnChange: true)
+                //.AddUserSecrets<Startup>()
+                .AddJsonFile("azureKeyVault.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             var config = builder.Build();

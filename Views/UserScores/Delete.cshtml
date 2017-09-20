@@ -1,4 +1,4 @@
-﻿@model UserScore
+﻿@model BirdieBook.Models.UserScore
 
 @{
     ViewData["Title"] = "Delete";
@@ -30,16 +30,70 @@
             @Html.DisplayFor(model => model.Score)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.FairwayHit)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FairwayHit)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Bunker)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bunker)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Water)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Water)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OutOfBounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OutOfBounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LostBall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LostBall)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PickedUp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PickedUp)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.PuttCount)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.PuttCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChipCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChipCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BunkershotCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BunkershotCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PenaltyCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PenaltyCount)
         </dd>
     </dl>
     

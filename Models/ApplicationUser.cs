@@ -28,6 +28,7 @@ namespace BirdieBook.Models
             Female=1
         }
 
+        [DisplayFormat(DataFormatString = "{0:0.0}")]
         public decimal Hcp { get; set; } //Handicap
 
         //public string Country { get; set; } //Homeplace

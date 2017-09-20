@@ -42,6 +42,8 @@ C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Manage\_ManageNav.cshtml
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Manage\_StatusMessage.cshtml
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Manage\_ViewImports.cshtml
+--file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Shared\Components\GolfCourseSelector\Default.cshtml
+--file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Shared\Components\TeeBoxSelector\Default.cshtml
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Shared\Error.cshtml
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Shared\_Layout.cshtml
 --file=C:\Users\Stian-Mac\Source\Repos\BirdieBook\BirdieBook\Views\Shared\_LoginPartial.cshtml

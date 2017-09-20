@@ -12,7 +12,7 @@ using System;
 namespace BirdieBook.Migrations
 {
     [DbContext(typeof(BirdieBookContext))]
-    [Migration("20170915035237_init")]
+    [Migration("20170920070546_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -177,17 +177,27 @@ namespace BirdieBook.Migrations
                     b.Property<string>("UserRoundId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DailyScratchRating");
+                    b.Property<int?>("DailyScratchRating");
 
                     b.Property<int>("Game");
+
+                    b.Property<int>("GivenShots");
+
+                    b.Property<decimal>("NewUserHcp");
+
+                    b.Property<bool>("RegulateHandicap");
 
                     b.Property<string>("TeeBoxId");
 
                     b.Property<DateTime>("TeeTime");
 
+                    b.Property<bool>("Tournament");
+
                     b.Property<decimal>("UserHcp");
 
                     b.Property<string>("UserId");
+
+                    b.Property<int>("Visibility");
 
                     b.Property<string>("WeatherCondition");
 

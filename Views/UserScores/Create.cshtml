@@ -4,6 +4,20 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+    #ex1Slider .slider-selection {
+        background: #BABABA;
+    }
+</style>
+<script>
+    // With JQuery
+    $('#ex1').slider({
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+    });
+
+</script>
 <h2>Create</h2>
 
 <h4>UserScore</h4>
@@ -12,11 +26,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" style="display:none">
+            <div class="form-group">
                 <label asp-for="UserRoundId" class="control-label"></label>
-                <input asp-for="UserRoundId" class ="form-control" />
+                <select asp-for="UserRoundId" class ="form-control" asp-items="ViewBag.UserRoundId"></select>
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group">
                 <label asp-for="HoleId" class="control-label"></label>
                 <input asp-for="HoleId" class="form-control" />
                 <span asp-validation-for="HoleId" class="text-danger"></span>
@@ -32,9 +46,50 @@
                 <span asp-validation-for="Score" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Points" class="control-label"></label>
+                <input asp-for="Points" class="form-control" />
+                <span asp-validation-for="Points" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="FairwayHit" /> @Html.DisplayNameFor(model => model.FairwayHit)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bunker" /> @Html.DisplayNameFor(model => model.Bunker)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="range" min="0" max="6" asp-for="Water" /> @Html.DisplayNameFor(model => model.Water)
+                        <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14" />
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="OutOfBounds" /> @Html.DisplayNameFor(model => model.OutOfBounds)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="LostBall" /> @Html.DisplayNameFor(model => model.LostBall)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="PickedUp" /> @Html.DisplayNameFor(model => model.PickedUp)
                     </label>
                 </div>
             </div>
@@ -44,9 +99,22 @@
                 <span asp-validation-for="PuttCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" name="Next" value="Save & goto next hole" class="btn btn-default" />
-                <input type="submit" name="Discard" value="Discard hole and return" class="btn btn-default" />
-                <input type="submit" name="Finish" value="Finish round" class="btn btn-default" />
+                <label asp-for="ChipCount" class="control-label"></label>
+                <input asp-for="ChipCount" class="form-control" />
+                <span asp-validation-for="ChipCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BunkershotCount" class="control-label"></label>
+                <input asp-for="BunkershotCount" class="form-control" />
+                <span asp-validation-for="BunkershotCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PenaltyCount" class="control-label"></label>
+                <input asp-for="PenaltyCount" class="form-control" />
+                <span asp-validation-for="PenaltyCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -57,6 +125,6 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync($"_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 

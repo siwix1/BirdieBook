@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "bootstrap-slider/5.0.13": {
+        "type": "package"
+      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -5033,6 +5036,17 @@
     }
   },
   "libraries": {
+    "bootstrap-slider/5.0.13": {
+      "sha512": "3QLNPBs41NBC+/15jatyjHCxr7HDfa22zJCAYkFnAIfxXTPLWLRoWgs/y6yGRFU/gdQyqOFhvpQ48WhsWkJ5lw==",
+      "type": "package",
+      "path": "bootstrap-slider/5.0.13",
+      "files": [
+        "bootstrap-slider.5.0.13.nupkg.sha512",
+        "bootstrap-slider.nuspec",
+        "content/css/bootstrap-slider.min.css",
+        "content/scripts/bootstrap-slider.min.js"
+      ]
+    },
     "Libuv/1.10.0": {
       "sha512": "GsCf4q+eyaI49rCPlgYxdxa1SQCysXFFdSJWdstrwxytg4+VPYLYrXD4AT2rjHVJ+UF7SSWX9CapWEYaU4ejVQ==",
       "type": "package",
@@ -13114,7 +13128,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.0",
       "Microsoft.Extensions.Configuration.AzureKeyVault >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.0",
+      "bootstrap-slider >= 5.0.13"
     ]
   },
   "packageFolders": {
@@ -13123,6 +13138,9 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "C:\\Users\\Stian-Mac\\Source\\Repos\\BirdieBook\\BirdieBook\\BirdieBook.csproj",
       "projectName": "BirdieBook",
@@ -13158,15 +13176,6 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
-          "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
           "Microsoft.AspNetCore.Authentication.Facebook": {
             "target": "Package",
             "version": "2.0.0"
@@ -13176,14 +13185,27 @@
             "target": "Package",
             "version": "2.0.0"
           },
-          "Microsoft.Extensions.Configuration.AzureKeyVault": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "suppressParent": "All",
             "target": "Package",
             "version": "2.0.0"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "2.0.0",
+            "autoReferenced": true
+          },
+          "Microsoft.Extensions.Configuration.AzureKeyVault": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
+          "bootstrap-slider": {
+            "target": "Package",
+            "version": "5.0.13"
           }
         },
         "imports": [

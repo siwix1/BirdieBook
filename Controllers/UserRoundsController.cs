@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
-using BirdieBook.ViewComponents;
 using BirdieBook.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
@@ -16,10 +14,13 @@ namespace BirdieBook.Controllers
     public class UserRoundsController : Controller
     {
         private readonly BirdieBookContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserRoundsController(BirdieBookContext context)
+
+        public UserRoundsController(BirdieBookContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: UserRounds
@@ -65,12 +66,20 @@ namespace BirdieBook.Controllers
         // GET: UserRounds/Create
         public async Task<IActionResult> Create()
         {
-            //ViewBag.UserName = User.Identity.Name;
-                    
-            //var user = await _context.ApplicationUser.FirstOrDefaultAsync(m => m.UserId == User.Identity.Name);
+            ViewBag.UserName = User.Identity.Name;
 
-            //if (user != null)
-            //    ViewBag.Hcp = user.Hcp;
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+
+           
+            if (user == null)
+            {
+                return NotFound("User is not logged in");
+            }
+
+            ViewBag.Hcp = string.Format(CultureInfo.InvariantCulture, "{0:0.0}", user.Hcp);
+            ViewBag.Gender = user.Gender;
+
+
 
             return View();
         }
@@ -191,5 +200,6 @@ namespace BirdieBook.Controllers
         {
             return _context.UserRound.Any(e => e.UserRoundId == id);
         }
+
     }
 }

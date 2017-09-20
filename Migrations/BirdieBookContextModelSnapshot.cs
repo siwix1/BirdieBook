@@ -176,17 +176,27 @@ namespace BirdieBook.Migrations
                     b.Property<string>("UserRoundId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DailyScratchRating");
+                    b.Property<int?>("DailyScratchRating");
 
                     b.Property<int>("Game");
+
+                    b.Property<int>("GivenShots");
+
+                    b.Property<decimal>("NewUserHcp");
+
+                    b.Property<bool>("RegulateHandicap");
 
                     b.Property<string>("TeeBoxId");
 
                     b.Property<DateTime>("TeeTime");
 
+                    b.Property<bool>("Tournament");
+
                     b.Property<decimal>("UserHcp");
 
                     b.Property<string>("UserId");
+
+                    b.Property<int>("Visibility");
 
                     b.Property<string>("WeatherCondition");
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UserScore>
+﻿@model IEnumerable<BirdieBook.Models.UserScore>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,12 +22,39 @@
                     @Html.DisplayNameFor(model => model.Score)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Points)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FairwayHit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bunker)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Water)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutOfBounds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LostBall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickedUp)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PuttCount)
                 </th>
-            <th></th> 
+                <th>
+                    @Html.DisplayNameFor(model => model.ChipCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BunkershotCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PenaltyCount)
+                </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -43,10 +70,37 @@
                 @Html.DisplayFor(modelItem => item.Score)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FairwayHit)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Bunker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Water)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutOfBounds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LostBall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickedUp)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PuttCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChipCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BunkershotCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltyCount)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.UserScoreId">Edit</a> |

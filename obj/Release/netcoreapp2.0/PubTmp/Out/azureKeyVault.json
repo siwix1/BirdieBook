@@ -1,0 +1,7 @@
+﻿{
+  "azureKeyVault": {
+    "vault": "BirdieBookVault",
+    "clientId": "924de5bb-b4b8-49db-b084-3ecd072ebde0",
+    "clientSecret": "13+Js+A73N2fTz+/4O4j8mP75wQ3HnUxX38yYGr/aYM="
+  }
+}

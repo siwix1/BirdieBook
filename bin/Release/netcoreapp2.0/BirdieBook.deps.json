@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "cd945696cff90a9745d51031f9ca805e22e8725c"
+    "signature": "1eaf22db576145fb111ea42d7b96fc3775eecd19"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
           "Microsoft.Extensions.Configuration.AzureKeyVault": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
+          "bootstrap-slider": "5.0.13"
         },
         "runtime": {
           "BirdieBook.dll": {}
@@ -37,6 +38,7 @@
           "BirdieBook.dll": {}
         }
       },
+      "bootstrap-slider/5.0.13": {},
       "Libuv/1.10.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0"
@@ -4240,6 +4242,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "bootstrap-slider/5.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3QLNPBs41NBC+/15jatyjHCxr7HDfa22zJCAYkFnAIfxXTPLWLRoWgs/y6yGRFU/gdQyqOFhvpQ48WhsWkJ5lw==",
+      "path": "bootstrap-slider/5.0.13",
+      "hashPath": "bootstrap-slider.5.0.13.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",

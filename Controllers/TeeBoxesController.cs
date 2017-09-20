@@ -172,5 +172,14 @@ namespace BirdieBook.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetParJson(string teeBoxId)
+        {
+            //Find sum of each hole's par
+            var coursePar = await _context.Hole.Where(m => m.TeeBoxId == teeBoxId).SumAsync(x => x.Par);
+
+            return Json(coursePar);
+
+        }
     }
 }

@@ -56,12 +56,17 @@ namespace BirdieBook.Migrations
                 columns: table => new
                 {
                     UserRoundId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DailyScratchRating = table.Column<int>(type: "int", nullable: false),
+                    DailyScratchRating = table.Column<int>(type: "int", nullable: true),
                     Game = table.Column<int>(type: "int", nullable: false),
+                    GivenShots = table.Column<int>(type: "int", nullable: false),
+                    NewUserHcp = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    RegulateHandicap = table.Column<bool>(type: "bit", nullable: false),
                     TeeBoxId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TeeTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Tournament = table.Column<bool>(type: "bit", nullable: false),
                     UserHcp = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Visibility = table.Column<int>(type: "int", nullable: false),
                     WeatherCondition = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

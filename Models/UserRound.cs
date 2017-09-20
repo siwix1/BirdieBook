@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BirdieBook.Models
 {
@@ -14,7 +15,8 @@ namespace BirdieBook.Models
         [HiddenInput(DisplayValue=false)]
         public string UserRoundId { get; set; } //Primary Key
 
-        //[HiddenInput(DisplayValue = false)]
+        
+        [HiddenInput(DisplayValue = false)]
         public string UserId { get; set; } //FK to AspNetUsearLogins table
 
         public GameType Game { get; set; }
@@ -29,12 +31,27 @@ namespace BirdieBook.Models
             //Foursome
         }
 
+
         public string TeeBoxId { get; set; } //FK to Teebox table
         public DateTime TeeTime { get; set; }
+        public VisibilityType Visibility { get; set; }
+
+        public enum VisibilityType
+        {
+            Show = 0,
+            HideWhilePlaying = 1,
+            HidePermanent = 2,
+            ShowFriends = 3
+        }
+
+        public bool RegulateHandicap { get; set; }
+        [DisplayFormat(DataFormatString = "{0:0.0}")]
         public decimal UserHcp { get; set; } //Hcp = Golfers Handicap
-        public int DailyScratchRating { get; set; } //Usually only used with tournaments
-                                                    //public bool RegulateHcp { get; set; } //If no, UserNewHcp = UserHcp
-                                                    //public decimal UserNewHcp { get; set; } //Calculated new handicap
+        public decimal NewUserHcp { get; set; } //Calculated after round
+        public int GivenShots { get; set; }
+        public bool Tournament { get; set; }
+        
+        public int? DailyScratchRating { get; set; } //Usually only used with tournaments
         public string WeatherCondition { get; set; } //Description of weather during round
 
         public IEnumerable<UserScore> Score { get; set; } //Users gross score per hole from score card
