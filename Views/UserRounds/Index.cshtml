@@ -30,7 +30,7 @@
             <th>
                 @Html.DisplayNameFor(modelItem => modelItem.TotalScore)
             </th>
-            <th></th>
+            @*<th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -40,7 +40,7 @@
                 @Html.HiddenFor(modelItem => item.UserRound.UserID)
             </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.GolfCourse)
+                @Html.DisplayFor(modelItem => item.GolfCourse)              
             </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.Tee)
@@ -54,13 +54,16 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem =>  item.TotalScore)
+                <a asp-action="Details" asp-route-id="@item.UserRoundId">
+
+                    @Html.DisplayFor(modelItem => item.TotalScore)
+                </a>
             </td>
-            <td>
+            @*<td>
                 <a asp-action="Edit" asp-route-id="@item.UserRoundId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.UserRoundId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.UserRoundId">Delete</a>
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>

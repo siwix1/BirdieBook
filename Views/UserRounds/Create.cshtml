@@ -41,37 +41,35 @@
 
 
             <div class="form-group">
-                <label asp-for="@Model.TeeTime" class="control-label"></label>
-                <input type="text" asp-for="@Model.TeeTime" id="teeTime" class="form-control" autocomplete="off"/>
-                <span asp-validation-for="@Model.TeeTime" class="text-danger"></span>
+                <label asp-for="TeeTime" class="control-label"></label>
+                <input type="text" asp-for="TeeTime" id="teeTime" class="form-control" autocomplete="off"/>
+                <span asp-validation-for="TeeTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.UserHcp" class="control-label"></label>
-                @*<input asp-for="@Model.UserHcp" value="@ViewBag.Hcp" class="form-control"/>*@
-                <select asp-for="@Model.UserHcp" class="form-control">
-                    @for (decimal i = -540; i <80; i++)
-                    {
-                        <option value="@(i/10)">@(i>0? '+': ' ')@Math.Abs((i/10))</option>
-                    }
-                </select>
-                <span asp-validation-for="@Model.UserHcp" class="text-danger"></span>
+                <label asp-for="UserHcp" class="control-label"></label>
+                <select asp-for="UserHcp" class="form-control" asp-items="@ViewBag.HcpList"></select>
+                <span asp-validation-for="UserHcp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Tournament" class="control-label"></label>
-                <input asp-for="@Model.Tournament" class="form-control" id="comp"/>
-                <span asp-validation-for="@Model.Tournament" class="text-danger"></span>
+                <label asp-for="Tournament" class="control-label"></label>
+                <input asp-for="Tournament" class="form-control" id="comp"/>
+                <span asp-validation-for="Tournament" class="text-danger"></span>
             </div>
             <div class="form-group" style="display:none" id="dsrDiv">
-                <label asp-for="@Model.DailyScratchRating" class="control-label"></label>
-                <input asp-for="@Model.DailyScratchRating" class="form-control" id="dsr"/>
-                <span asp-validation-for="@Model.DailyScratchRating" class="text-danger"></span>
+                <label asp-for="DailyScratchRating" class="control-label"></label>
+                <input asp-for="DailyScratchRating" class="form-control" id="dsr"/>
+                <span asp-validation-for="DailyScratchRating" class="text-danger"></span>
             </div>
             @*<div class="form-group">
                 <label asp-for="@Model.WeatherCondition" class="control-label"></label>
                 <input asp-for="@Model.WeatherCondition" class="form-control"/>
                 <span asp-validation-for="@Model.WeatherCondition" class="text-danger"></span>
             </div>*@
-
+            <div class="form-group">
+                <label asp-for="Visibility" class="control-label"></label>
+                <select asp-for="Visibility" class="form-control" asp-items="Html.GetEnumSelectList<UserRound.VisibilityType>()"></select>
+                <span asp-validation-for="Visibility" class="text-danger"></span>
+            </div>
             <br />
             <br />
 

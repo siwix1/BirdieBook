@@ -27,10 +27,10 @@ namespace BirdieBook.Models
         public int Score { get; set; }
         public int Points { get; set; }
         public bool FairwayHit { get; set; } //TODO: Users to set their own default value?
-        public bool Bunker { get; set; }
-        public bool Water { get; set; }
-        public bool OutOfBounds { get; set; }
-        public bool LostBall { get; set; } 
+        public int Bunker { get; set; }
+        public int Water { get; set; }
+        public int OutOfBounds { get; set; }
+        public int LostBall { get; set; } 
         public bool PickedUp { get; set; }
         [Range(0, int.MaxValue)]
         [DefaultValue(2)]

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BirdieBook.Data;
 using BirdieBook.Models;
+using BirdieBook.ViewModels;
 
 namespace BirdieBook.Controllers
 {
@@ -44,8 +45,31 @@ namespace BirdieBook.Controllers
         }
 
         // GET: UserScores/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(UserScoreCreate userScoreCreate)
         {
+            //verify if score already exist, redirect to edit
+            var userScore = await _context.UserScore.FirstOrDefaultAsync(x =>
+                x.UserRoundId == userScoreCreate.UserRoundId &&
+                x.HoleNumber == userScoreCreate.HoleNumber);
+
+            var userScoreId = userScore?.UserScoreId;
+            if (!string.IsNullOrEmpty(userScoreId))
+            {
+                return RedirectToAction(nameof(Edit), new {id = userScoreId});
+            }
+
+
+            ViewBag.UserRoundId = userScoreCreate.UserRoundId;
+            ViewBag.HoleNumber = userScoreCreate.HoleNumber;
+
+           
+            ViewBag.TeeBoxId = userScoreCreate.TeeBoxId;
+
+            var hole = await _context.Hole.FirstOrDefaultAsync(x=>x.HoleNumber == userScoreCreate.HoleNumber && x.TeeBoxId==userScoreCreate.TeeBoxId );
+            ViewBag.HoleId = hole.HoleId;
+            ViewBag.Par = hole.Par;
+
+
             return View();
         }
 
@@ -60,7 +84,16 @@ namespace BirdieBook.Controllers
             {
                 _context.Add(userScore);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //Fetch TeeBoxId from parent table
+                var teeBoxId = _context.UserRound.FirstOrDefault(x => x.UserRoundId == userScore.UserRoundId).TeeBoxId;
+
+                var holeNumber = userScore.HoleNumber + 1;
+                if (holeNumber > 18) holeNumber = 1;
+
+
+                return RedirectToAction(nameof(Create), new { holeNumber, teeBoxId, userScore.UserRoundId});
+                //return RedirectToAction(nameof(Index));
             }
             return View(userScore);
         }
@@ -78,6 +111,18 @@ namespace BirdieBook.Controllers
             {
                 return NotFound();
             }
+
+            //Fetch TeeBoxId from parent table
+            var teeBoxId = _context.UserRound.FirstOrDefault(x => x.UserRoundId == userScore.UserRoundId).TeeBoxId;
+
+            ViewBag.TeeBoxId = teeBoxId;
+            ViewBag.UserRoundId = userScore.UserRoundId;
+            ViewBag.HoleNumber = userScore.HoleNumber;
+
+            ViewBag.HoleId = userScore.HoleId;
+            ViewBag.Par = userScore.Score; //TODO: Dirty Hack!!!
+
+
             return View(userScore);
         }
 
@@ -111,7 +156,16 @@ namespace BirdieBook.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //Fetch TeeBoxId from parent table
+                var teeBoxId = _context.UserRound.FirstOrDefault(x => x.UserRoundId == userScore.UserRoundId).TeeBoxId;
+
+                var holeNumber = userScore.HoleNumber + 1;
+                if (holeNumber > 18) holeNumber = 1;
+
+
+                return RedirectToAction(nameof(Create), new { holeNumber, teeBoxId, userScore.UserRoundId });
+
+                //return RedirectToAction(nameof(Index));
             }
             return View(userScore);
         }

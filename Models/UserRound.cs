@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BirdieBook.Models
 {
@@ -10,6 +13,9 @@ namespace BirdieBook.Models
         public UserRound()
         {
             Score = new List<UserScore>();
+
+
+
         }
 
         [HiddenInput(DisplayValue=false)]
@@ -31,8 +37,9 @@ namespace BirdieBook.Models
             //Foursome
         }
 
-
+        [DisplayName("Tee")]
         public string TeeBoxId { get; set; } //FK to Teebox table
+        [DisplayName("Tee Time")]
         public DateTime TeeTime { get; set; }
         public VisibilityType Visibility { get; set; }
 
@@ -46,6 +53,7 @@ namespace BirdieBook.Models
 
         public bool RegulateHandicap { get; set; }
         [DisplayFormat(DataFormatString = "{0:0.0}")]
+        [DisplayName("Hcp before round")]
         public decimal UserHcp { get; set; } //Hcp = Golfers Handicap
         public decimal NewUserHcp { get; set; } //Calculated after round
         public int GivenShots { get; set; }
@@ -55,7 +63,14 @@ namespace BirdieBook.Models
         public string WeatherCondition { get; set; } //Description of weather during round
 
         public IEnumerable<UserScore> Score { get; set; } //Users gross score per hole from score card
-   }
+
+
+        
+
+
+
+
+    }
 
 
 }

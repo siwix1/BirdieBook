@@ -1,0 +1,215 @@
+﻿@using BirdieBook.Models;
+@model UserScore
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        @*<label asp-for="UserRoundId" class="control-label"></label>*@
+        <input asp-for="UserRoundId" class="form-control" value="@ViewBag.UserRoundId" />
+    </div>
+    <div class="form-group">
+        @*<label asp-for="UserRoundId" class="control-label"></label>*@
+        <input asp-for="UserScoreId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        @*<label asp-for="HoleId" class="control-label"></label>*@
+        <input asp-for="HoleId" class="form-control" value="@ViewBag.HoleId" />
+        <span asp-validation-for="HoleId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @*<label asp-for="HoleNumber" class="control-label"></label>*@
+        <input type="hidden" asp-for="HoleNumber" class="form-control" readonly="readonly" value="@ViewBag.HoleNumber" />
+        <span asp-validation-for="HoleNumber" class="text-danger"></span>
+    </div>
+    <div class="row" style="margin: 5px;">
+        <div class="col-xs-4" style="padding: 0px">
+            <div class="form-group">
+                <label asp-for="Score" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="Score" class="form-control input-number" type="text" value="@ViewBag.Par" min="1" max="30" />
+                    <span asp-validation-for="Score" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4 text-center">
+            <div class="form-group">
+                <label>
+                    <label asp-for="FairwayHit" class="control-label"></label>
+                    <br />
+                    @*@Html.DisplayNameFor(model => model.FairwayHit)<br/>*@
+                    <input data-toggle="toggle" asp-for="FairwayHit" data-on="Yes!" data-off="Duh!" data-onstyle="success" />
+                </label>
+            </div>
+        </div>
+        <div class="col-xs-4" style="padding: 0px">
+            <div class="form-group">
+                <label asp-for="PuttCount" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="PuttCount" class="form-control" type="text" value="2" min="0" max="10" />
+                    <span asp-validation-for="PuttCount" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row" style="margin: 5px">
+        <div class="col-xs-4" style="padding: 0px">
+
+            <div class="form-group">
+                <label asp-for="ChipCount" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="ChipCount" class="form-control" type="text" value="0" min="0" max="10" />
+                    <span asp-validation-for="ChipCount" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+        </div>
+        <div class="col-xs-4" style="padding: 0px">
+            <div class="form-group">
+                <label asp-for="BunkershotCount" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="BunkershotCount" class="form-control" type="text" value="0" min="0" max="10" />
+                    <span asp-validation-for="BunkershotCount" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 5px">
+        <div class="col-xs-4" style="padding: 0px;">
+            <div class="form-group">
+                <label asp-for="Water" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="Water" class="form-control" type="text" value="0" min="0" max="10" />
+                    <span asp-validation-for="Water" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4" style="padding: 0px;"></div>
+
+        <div class="col-xs-4" style="padding: 0px">
+            <div class="form-group">
+                <label asp-for="OutOfBounds" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input asp-for="OutOfBounds" class="form-control" type="text" value="0" min="0" max="10" />
+                    <span asp-validation-for="OutOfBounds" class="text-danger"></span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin: 5px">
+        <div class="col-xs-4" style="padding: 0">
+            <div class="form-group">
+                <label asp-for="PenaltyCount" class="control-label"></label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    @*<div class="form-group">*@
+                    <input asp-for="PenaltyCount" class="form-control" type="text" value="0" min="0" max="10" />
+                    <span asp-validation-for="PenaltyCount" class="text-danger"></span>
+                    @*</div>*@
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4" style="padding: 0px"></div>
+        <div class="col-xs-4" style="padding: 0px"></div>
+
+        <div class="col-xs-4 text-center">
+            <div class="form-group">
+                <label>
+                    <label asp-for="PickedUp" class="control-label"></label>
+                    <br />
+                    @*@Html.DisplayNameFor(model => model.FairwayHit)<br/>*@
+                    <input data-toggle="toggle" asp-for="PickedUp" data-on="Doh!" data-off="Not!" data-onstyle="danger" />
+                </label>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group pull-left">
+                <input class="btn btn-default btn-danger" type="reset" value="Cancel" id="cancelBtn" />
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group pull-right">
+                <input class="btn btn-default btn-success" type="submit" value="Save" />
+            </div>
+        </div>
+
+    </div>

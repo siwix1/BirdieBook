@@ -8,6 +8,7 @@
     <Compile Remove="Program_orig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.0.0-beta" />
     <PackageReference Include="bootstrap-slider" Version="5.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.0.0" />

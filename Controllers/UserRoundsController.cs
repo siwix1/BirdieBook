@@ -8,6 +8,7 @@ using BirdieBook.Data;
 using BirdieBook.Models;
 using BirdieBook.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BirdieBook.Controllers
 {
@@ -79,7 +80,7 @@ namespace BirdieBook.Controllers
             ViewBag.Hcp = string.Format(CultureInfo.InvariantCulture, "{0:0.0}", user.Hcp);
             ViewBag.Gender = user.Gender;
 
-
+            ViewBag.HcpList = new UserRoundCreateViewModel().HcpList;
 
             return View();
         }
@@ -91,21 +92,24 @@ namespace BirdieBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserRoundId,UserId,TeeBoxId,TeeTime,UserHcp,DailyScratchRating,WeatherCondition")] UserRound userRound)
         {
+
             if (ModelState.IsValid)
             {
+                userRound.UserHcp /= 10; //Hack to bypass cultural error in decimal validation
                 _context.Add(userRound);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                var userScoreCreate = new UserScoreCreate()
-                {
-                    UserRoundId = userRound.UserRoundId,
-                    HoleNumber = 1
-                };
+
 
                 return RedirectToAction(
                     nameof(Create), 
                     "UserScores",
-                    userScoreCreate);
+                    new
+                    {
+                        UserRoundId = userRound.UserRoundId,
+                        TeeBoxId = userRound.TeeBoxId,
+                        HoleNumber=1
+                    });
             }
             else
             {
